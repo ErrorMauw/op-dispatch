@@ -11,9 +11,9 @@ ESX & QBCore FiveM dispatch
   
 ```lua
 Config = {}
-Config.Sound = true -- True to listen to the sound and false to don't
-Config.Framework = 'QBCore' -- 'ESX' or 'QBCore'
-Config.Locale = 'en' -- 'en' or 'es'
+Config.Sound = true -- True to listen to the sound and false to don't.
+Config.Framework = 'QBCore' -- 'ESX' or 'QBCore'.
+Config.Locale = 'en' -- 'en' or 'es'.
 
 Config.CommandShow = {
     command = 'show',
