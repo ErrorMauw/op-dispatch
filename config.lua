@@ -1,9 +1,10 @@
 Config = {}
 Config.Sound = true
+Config.Framework = 'QBCore' -- 'ESX' or 'QBCore'
 Config.Locale = 'en'
 
 Config.CommandShow = {
-    command = 'mostrar',
+    command = 'show',
     description = 'Open Dispatch',
 }
 

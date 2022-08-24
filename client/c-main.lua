@@ -1,5 +1,3 @@
-ESX = nil
-
 local LC = Locales[Config.Locale]
 
 local calls = {}
@@ -11,165 +9,382 @@ local show = false
 -------- ESX ---------
 ----------------------
 
-Citizen.CreateThread(function()
-    while ESX == nil do
-        TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-        Citizen.Wait(0)
-    end
-end)
-
-RegisterNetEvent("esx:playerLoaded")
-AddEventHandler("esx:playerLoaded", function(xPlayer)
-    ESX.PlayerData = xPlayer
-end)
-
-RegisterNetEvent("esx:setJob")
-AddEventHandler("esx:setJob", function(job)
-    ESX.PlayerData.job = job
-
-    calls = {}
-    numcall = 0
-    allcalls = 0
-
-    SendNUIMessage({
-        type = 'clear',
-    });
-end)
-
-----------------------
------- Commands ------
-----------------------
-
-RegisterCommand(Config.CommandShow.command, function()
-    for k, v in pairs(Config.Jobs) do
-        if ESX.PlayerData.job.name == v then
-            if show then
-                SendNUIMessage({
-                    type = 'show',
-                    action = false
-                });
-                show = false
-            else
-                SendNUIMessage({
-                    type = 'show',
-                    action = true
-                });
-                show = true
-            end
+if Config.Framework == "ESX" then
+    ESX = nil
+    Citizen.CreateThread(function()
+        while ESX == nil do
+            TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+            Citizen.Wait(0)
         end
-    end
-end, false)
+    end)
 
-RegisterCommand("enterdisp", function()
-    for k, v in pairs(Config.Jobs) do
-        if ESX.PlayerData.job.name == v then
-            if show then
-                if allcalls ~= 0 then
-                    local coords = calls[numcall]['coords']
-                    SetNewWaypoint(coords.x, coords.y)
-                end
-            end
-        end
-    end
-end)
+    RegisterNetEvent("esx:playerLoaded")
+    AddEventHandler("esx:playerLoaded", function(xPlayer)
+        ESX.PlayerData = xPlayer
+    end)
 
-RegisterCommand("leftdisp", function()
-    for k, v in pairs(Config.Jobs) do
-        if ESX.PlayerData.job.name == v then
-            if show then
-                if calls[numcall - 1] ~= nil then
-                    local num = numcall - 1
+    RegisterNetEvent("esx:setJob")
+    AddEventHandler("esx:setJob", function(job)
+        ESX.PlayerData.job = job
+
+        calls = {}
+        numcall = 0
+        allcalls = 0
+
+        SendNUIMessage({
+            type = 'clear',
+        });
+
+        SendNUIMessage({
+            type = 'show',
+            action = false
+        });
+        show = false
+    end)
+
+    RegisterCommand(Config.CommandShow.command, function()
+        for k, v in pairs(Config.Jobs) do
+            if ESX.PlayerData.job.name == v then
+                if show then
                     SendNUIMessage({
-                        type = 'setalert',
-                        content = calls[numcall - 1]['text'],
-                        title = calls[numcall - 1]['title'],
-                        numcall = num,
-                    })
-                    numcall = numcall - 1
-                end
-            end
-        end
-    end
-end)
-
-RegisterCommand('rightdisp', function()
-    for k, v in pairs(Config.Jobs) do
-        if ESX.PlayerData.job.name == v then
-            if show then
-                if calls[numcall + 1] ~= nil then
-                    local num = numcall + 1
+                        type = 'show',
+                        action = false
+                    });
+                    show = false
+                else
                     SendNUIMessage({
-                        type = 'setalert',
-                        content = calls[numcall + 1]['text'],
-                        title = calls[numcall + 1]['title'],
-                        numcall = num,
-                    })
-                    numcall = numcall + 1
+                        type = 'show',
+                        action = true
+                    });
+                    show = true
                 end
             end
         end
-    end
-end)
+    end, false)
 
-RegisterCommand(Config.CommandClear.command, function()
-    for k, v in pairs(Config.Jobs) do
-        if ESX.PlayerData.job.name == v then
-            calls = {}
-            numcall = 0
-            allcalls = 0
-
-            SendNUIMessage({
-                type = 'clear',
-            });
-            ESX.ShowNotification(LC['Clear_Alerts'])
+    RegisterCommand("enterdisp", function()
+        for k, v in pairs(Config.Jobs) do
+            if ESX.PlayerData.job.name == v then
+                if show then
+                    if allcalls ~= 0 then
+                        local coords = calls[numcall]['coords']
+                        SetNewWaypoint(coords.x, coords.y)
+                    end
+                end
+            end
         end
-    end
-end, false)
+    end)
 
-RegisterCommand(Config.CommandPanic.command, function()
+    RegisterCommand("leftdisp", function()
+        for k, v in pairs(Config.Jobs) do
+            if ESX.PlayerData.job.name == v then
+                if show then
+                    if calls[numcall - 1] ~= nil then
+                        local num = numcall - 1
+                        SendNUIMessage({
+                            type = 'setalert',
+                            content = calls[numcall - 1]['text'],
+                            title = calls[numcall - 1]['title'],
+                            numcall = num,
+                        })
+                        numcall = numcall - 1
+                    end
+                end
+            end
+        end
+    end)
+
+    RegisterCommand('rightdisp', function()
+        for k, v in pairs(Config.Jobs) do
+            if ESX.PlayerData.job.name == v then
+                if show then
+                    if calls[numcall + 1] ~= nil then
+                        local num = numcall + 1
+                        SendNUIMessage({
+                            type = 'setalert',
+                            content = calls[numcall + 1]['text'],
+                            title = calls[numcall + 1]['title'],
+                            numcall = num,
+                        })
+                        numcall = numcall + 1
+                    end
+                end
+            end
+        end
+    end)
+
+    RegisterCommand(Config.CommandClear.command, function()
+        for k, v in pairs(Config.Jobs) do
+            if ESX.PlayerData.job.name == v then
+                calls = {}
+                numcall = 0
+                allcalls = 0
+
+                SendNUIMessage({
+                    type = 'clear',
+                });
+                ESX.ShowNotification(LC['Clear_Alerts'])
+            end
+        end
+    end, false)
+
+    RegisterCommand(Config.CommandPanic.command, function()
+        for k, v in pairs(Config.Jobs) do
+            if Config.AllowedJobs[v].panic then
+                local job = v
+                local text = LC['Panic_01'] .. Config.AllowedJobs[v].label .. LC['Panic_02']
+                local coords = GetEntityCoords(PlayerPedId())
+                local id = GetPlayerServerId(PlayerId())
+
+                ESX.ShowNotification('Boton de panico activado!')
+                TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
+            end
+        end
+    end)
+
     for k, v in pairs(Config.Jobs) do
-        if Config.AllowedJobs[v].panic then
+        RegisterCommand(Config.AllowedJobs[v].command, function(source, args)
             local job = v
-            local text = LC['Panic_01'] .. Config.AllowedJobs[v].label .. LC['Panic_02']
+            local text = table.concat(args, " ")
             local coords = GetEntityCoords(PlayerPedId())
             local id = GetPlayerServerId(PlayerId())
 
-            ESX.ShowNotification('Boton de panico activado!')
+            ESX.ShowNotification(LC['Correcta_Alerta'])
             TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
-        end
+        end, false)
     end
-end)
 
-for k, v in pairs(Config.Jobs) do
-    RegisterCommand(Config.AllowedJobs[v].command, function(source, args)
-        local job = v
-        local text = table.concat(args, " ")
-        local coords = GetEntityCoords(PlayerPedId())
-        local id = GetPlayerServerId(PlayerId())
+    RegisterCommand(Config.VehicleRob.command, function(args)
+        local ped = PlayerPedId()
+        if IsPedInAnyVehicle(ped, false) then
+            local vehicle = GetVehiclePedIsIn(ped, false)
+            local model = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
 
-        ESX.ShowNotification(LC['Correcta_Alerta'])
-        TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
+            local coords = GetEntityCoords(PlayerPedId())
+            local id = GetPlayerServerId(PlayerId())
+
+            local subcolor = tostring(GetVehicleColor(vehicle))
+            local color = LC.Colors[subcolor]
+
+            ESX.ShowNotification(LC['Correcta_Alerta'])
+            TriggerServerEvent("Opto_dispatch:Server:SendVehRob", 'police', coords, model, color, id)
+        else
+            ESX.ShowNotification(LC['En_Vehiculo'])
+        end
     end, false)
 end
 
-RegisterCommand(Config.VehicleRob.command, function(args)
-    local ped = PlayerPedId()
-    if IsPedInAnyVehicle(ped, false) then
-        local vehicle = GetVehiclePedIsIn(ped, false)
-        local model = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
+-------------------------
+-------- QBCore ---------
+-------------------------
 
-        local coords = GetEntityCoords(PlayerPedId())
-        local id = GetPlayerServerId(PlayerId())
+if Config.Framework == "QBCore" then
+    local isLoggedIn = false
+    local QBCore = exports['qb-core']:GetCoreObject()
 
-        local subcolor = tostring(GetVehicleColor(vehicle))
-        local color = LC.Colors[subcolor]
+    RegisterNetEvent('QBCore:Client:OnJobUpdate')
+    AddEventHandler('QBCore:Client:OnJobUpdate', function(job)
+        PlayerData.job = job
+        PlayerJob = PlayerData.job
 
-        ESX.ShowNotification(LC['Correcta_Alerta'])
-        TriggerServerEvent("Opto_dispatch:Server:SendVehRob", 'police', coords, model, color, id)
-    else
-        ESX.ShowNotification(LC['En_Vehiculo'])
+        calls = {}
+        numcall = 0
+        allcalls = 0
+
+        SendNUIMessage({
+            type = 'clear',
+        });
+
+        SendNUIMessage({
+            type = 'show',
+            action = false
+        });
+        show = false
+    end)
+
+    RegisterNetEvent("QBCore:Client:OnPlayerUnload")
+    AddEventHandler("QBCore:Client:OnPlayerUnload", function()
+        isLoggedIn = false
+    end)
+
+    RegisterNetEvent("QBCore:Client:OnPlayerLoaded")
+    AddEventHandler("QBCore:Client:OnPlayerLoaded", function()
+        PlayerData = QBCore.Functions.GetPlayerData()
+        isLoggedIn = true
+    end)
+
+    AddEventHandler("onResourceStart", function(resource)
+        if resource == GetCurrentResourceName() then
+            if Config.Framework == 'QBCore' then
+                Citizen.Wait(2000)
+                PlayerData = QBCore.Functions.GetPlayerData()
+                isLoggedIn = true
+
+                calls = {}
+                numcall = 0
+                allcalls = 0
+
+                SendNUIMessage({
+                    type = 'clear',
+                });
+            end
+        end
+    end)
+
+    RegisterCommand(Config.CommandShow.command, function()
+        for k, v in pairs(Config.Jobs) do
+            if isLoggedIn then
+                if PlayerData.job.name == v then
+                    if PlayerData.job.onduty then
+                        if show then
+                            SendNUIMessage({
+                                type = 'show',
+                                action = false
+                            });
+                            show = false
+                        else
+                            print('true')
+                            SendNUIMessage({
+                                type = 'show',
+                                action = true
+                            });
+                            show = true
+                        end
+                    else
+                        QBCore.Functions.Notify(LC['Not_Service'], 'error')
+                    end
+                end
+            end
+        end
+    end, false)
+
+    RegisterCommand("enterdisp", function()
+        for k, v in pairs(Config.Jobs) do
+            if PlayerData.job.name == v then
+                if PlayerData.job.onduty then
+                    if show then
+                        if allcalls ~= 0 then
+                            local coords = calls[numcall]['coords']
+                            SetNewWaypoint(coords.x, coords.y)
+                        end
+                    end
+                else
+                    QBCore.Functions.Notify(LC['Not_Service'], 'error')
+                end
+            end
+        end
+    end)
+
+    RegisterCommand("leftdisp", function()
+        for k, v in pairs(Config.Jobs) do
+            if PlayerData.job.name == v then
+                if PlayerData.job.onduty then
+                    if show then
+                        if calls[numcall - 1] ~= nil then
+                            local num = numcall - 1
+                            SendNUIMessage({
+                                type = 'setalert',
+                                content = calls[numcall - 1]['text'],
+                                title = calls[numcall - 1]['title'],
+                                numcall = num,
+                            })
+                            numcall = numcall - 1
+                        end
+                    end
+                else
+                    QBCore.Functions.Notify(LC['Not_Service'], 'error')
+                end
+            end
+        end
+    end)
+
+    RegisterCommand('rightdisp', function()
+        for k, v in pairs(Config.Jobs) do
+            if PlayerData.job.name == v then
+                if PlayerData.job.onduty then
+                    if show then
+                        if calls[numcall + 1] ~= nil then
+                            local num = numcall + 1
+                            SendNUIMessage({
+                                type = 'setalert',
+                                content = calls[numcall + 1]['text'],
+                                title = calls[numcall + 1]['title'],
+                                numcall = num,
+                            })
+                            numcall = numcall + 1
+                        end
+                    end
+                else
+                    QBCore.Functions.Notify(LC['Not_Service'], 'error')
+                end
+            end
+        end
+    end)
+
+    RegisterCommand(Config.CommandClear.command, function()
+        for k, v in pairs(Config.Jobs) do
+            if PlayerData.job.name == v then
+                calls = {}
+                numcall = 0
+                allcalls = 0
+
+                SendNUIMessage({
+                    type = 'clear',
+                });
+                QBCore.Functions.Notify(LC['Clear_Alerts'])
+            end
+        end
+    end, false)
+
+    RegisterCommand(Config.CommandPanic.command, function()
+        for k, v in pairs(Config.Jobs) do
+            if Config.AllowedJobs[v].panic then
+                if PlayerData.job.onduty then
+                    local job = v
+                    local text = LC['Panic_01'] .. Config.AllowedJobs[v].label .. LC['Panic_02']
+                    local coords = GetEntityCoords(PlayerPedId())
+                    local id = GetPlayerServerId(PlayerId())
+
+                    QBCore.Functions.Notify(LC['Panic_Button'])
+                    TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
+                else
+                    QBCore.Functions.Notify(LC['Not_Service'], 'error')
+                end
+            end
+        end
+    end)
+
+    for k, v in pairs(Config.Jobs) do
+        RegisterCommand(Config.AllowedJobs[v].command, function(source, args)
+            local job = v
+            local text = table.concat(args, " ")
+            local coords = GetEntityCoords(PlayerPedId())
+            local id = GetPlayerServerId(PlayerId())
+
+            QBCore.Functions.Notify(LC['Correcta_Alerta'])
+            TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
+        end, false)
     end
-end, false)
+
+    RegisterCommand(Config.VehicleRob.command, function(args)
+        local ped = PlayerPedId()
+        if IsPedInAnyVehicle(ped, false) then
+            local vehicle = GetVehiclePedIsIn(ped, false)
+            local model = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
+
+            local coords = GetEntityCoords(PlayerPedId())
+            local id = GetPlayerServerId(PlayerId())
+
+            local subcolor = tostring(GetVehicleColor(vehicle))
+            local color = LC.Colors[subcolor]
+
+            QBCore.Functions.Notify(LC['Correcta_Alerta'])
+            TriggerServerEvent("Opto_dispatch:Server:SendVehRob", 'police', coords, model, color, id)
+        else
+            QBCore.Functions.Notify(LC['En_Vehiculo'])
+        end
+    end, false)
+end
 
 ----------------------
 ---- TriggerEvent ----
@@ -190,7 +405,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
             id = id
         });
 
-        table.insert(calls, { text = text, coords = coords, title =  LC['Alerta_Titulo']})
+        table.insert(calls, { text = text, coords = coords, title = LC['Alerta_Titulo'] })
 
         if Config.Sound then
             PlaySoundFrontend(-1, "CONFIRM_BEEP", "HUD_MINI_GAME_SOUNDSET", 0)
@@ -206,7 +421,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
             id = id
         });
 
-        table.insert(calls, { text = text, coords = coords, title =  LC['Alerta_Titulo']})
+        table.insert(calls, { text = text, coords = coords, title = LC['Alerta_Titulo'] })
 
         if Config.Sound then
             PlaySoundFrontend(-1, "CONFIRM_BEEP", "HUD_MINI_GAME_SOUNDSET", 0)
@@ -232,7 +447,9 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, color
             id = id
         });
 
-        table.insert(calls, { text = LC['Veh_Rob_01'] .. model .. " color " .. color .. LC['Veh_Rob_02'] .. streetname, coords = coords, title =  LC['Alerta_Titulo']})
+        table.insert(calls,
+            { text = LC['Veh_Rob_01'] .. model .. " color " .. color .. LC['Veh_Rob_02'] .. streetname, coords = coords,
+                title = LC['Alerta_Titulo'] })
 
         if Config.Sound then
             PlaySoundFrontend(-1, "CONFIRM_BEEP", "HUD_MINI_GAME_SOUNDSET", 0)
@@ -249,7 +466,9 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, color
             id = id
         });
 
-        table.insert(calls, { text = LC['Veh_Rob_01'] .. model .. " color " .. color .. LC['Veh_Rob_02'] .. streetname, coords = coords, title =  LC['Alerta_Titulo']})
+        table.insert(calls,
+            { text = LC['Veh_Rob_01'] .. model .. " color " .. color .. LC['Veh_Rob_02'] .. streetname, coords = coords,
+                title = LC['Alerta_Titulo'] })
 
         if Config.Sound then
             PlaySoundFrontend(-1, "CONFIRM_BEEP", "HUD_MINI_GAME_SOUNDSET", 0)
@@ -273,5 +492,6 @@ TriggerEvent("chat:addSuggestion", "/" .. Config.CommandClear.command, (Config.C
 TriggerEvent("chat:addSuggestion", "/" .. Config.CommandPanic.command, (Config.CommandPanic.description))
 
 for k, v in pairs(Config.Jobs) do
-    TriggerEvent("chat:addSuggestion", "/" .. Config.AllowedJobs[v].command, (Config.AllowedJobs[v].descriptcommand), {{name = (LC['alert']), help = (LC['alert_1'])}})
+    TriggerEvent("chat:addSuggestion", "/" .. Config.AllowedJobs[v].command, (Config.AllowedJobs[v].descriptcommand),
+        { { name = (LC['alert']), help = (LC['alert_1']) } })
 end

@@ -2,6 +2,8 @@ Locales = {}
 
 Locales['en'] = {
     ['Clear_Alerts'] = 'Alerts have been cleared!',
+    ['Panic_Button'] = 'Panic button activated!',
+    ['Not_Service'] = 'You arent on duty!',
     ['Panic_01'] = 'Brigade officer  of the ',
     ['Panic_02'] = ' pressed the panic button, all available units head to the location!',
     ['Correcta_Alerta'] = 'Alert sent successfully!',
@@ -18,6 +20,8 @@ Locales['en'] = {
 
 Locales['es'] = {
     ['Clear_Alerts'] = 'Se borraron las alertas!',
+    ['Panic_Button'] = 'Boton de panico activado!',
+    ['Not_Service'] = 'No estás de servicio!',
     ['Panic_01'] = 'El oficial de la brigada ',
     ['Panic_02'] = ' acaba de presionar el boton de panico, todas las unidades disponibles diriganse a la ubicaccion!',
     ['Correcta_Alerta'] = 'Alerta enviada correctamente!',
