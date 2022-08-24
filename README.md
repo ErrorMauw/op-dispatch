@@ -9,7 +9,7 @@ ESX & QBCore FiveM dispatch
 - At the bottom of the config.lua file you will see 
   Config.Jobs and Config.AllowedJobs, you can add whatever job you're interested to be able to use the dispatch.
   
-```
+```lua
 Config = {}
 Config.Sound = true -- True to listen to the sound and false to don't
 Config.Framework = 'QBCore' -- 'ESX' or 'QBCore'
