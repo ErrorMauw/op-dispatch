@@ -1,7 +1,7 @@
 # Opto Studios https://discord.gg/rnQePyNK4x
 Op-Dispatch
 
-ESX fivem dispatch | QBCore coming soon
+ESX & QBCore FiveM dispatch
 
 ## Download & Installation
 ### Manually
