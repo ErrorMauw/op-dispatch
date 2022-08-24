@@ -4,6 +4,60 @@ Op-Dispatch
 ESX & QBCore FiveM dispatch
 
 ## Download & Installation
+### Config
+- Make sure to change your language in Config.Locale and Config.Framework.
+- At the bottom of the config.lua file you will see 
+  Config.Jobs and Config.AllowedJobs, you can add whatever job you're interested to be able to use the dispatch.
+  
+```
+Config = {}
+Config.Sound = true -- True to listen to the sound and false to don't
+Config.Framework = 'QBCore' -- 'ESX' or 'QBCore'
+Config.Locale = 'en' -- 'en' or 'es'
+
+Config.CommandShow = {
+    command = 'show',
+    description = 'Open Dispatch',
+}
+
+Config.VehicleRob = {
+    command = 'vehrob',
+    description = 'Vehicle theft',
+}
+
+Config.CommandPanic = {
+    command = 'p',
+    description = 'Emergency button'
+}
+
+Config.CommandClear = {
+    command = 'cls',
+    description =  'Clear Alerts'
+}
+
+Config.Jobs = {
+    'police',
+    'ambulance'
+}
+
+Config.AllowedJobs = {
+    ["police"] = {
+        name = 'police',
+        label = 'LSPD',
+        command = 'alert',
+        descriptcommand = 'Send an alert to LSPD',
+        panic = true,
+    },
+    ["ambulance"] = {
+        name = 'ambulance',
+        label = 'EMS',
+        command = 'alertems',
+        descriptcommand = 'Send an alert to EMS',
+        panic = true,
+    },
+}
+```
+
 ### Manually
 - Download https://github.com/ErrorMauw/op-dispatch/archive/refs/heads/main.zip
 - Put it in the `resources` directory
@@ -13,6 +67,5 @@ ESX & QBCore FiveM dispatch
 cd resources
 git clone https://github.com/ErrorMauw/op-dispatch resources/op-dispatch
 
-## Screenshots
-![No Alert](https://cdn.discordapp.com/attachments/995515650007109683/1011915337769418794/unknown.png)
-![Center Alert](https://cdn.discordapp.com/attachments/995515650007109683/1011915419122155580/unknown.png)
+## Preview
+https://user-images.githubusercontent.com/80290702/186480282-8c2db285-7d3e-412e-9803-5d8491862699.mp4
