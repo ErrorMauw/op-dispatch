@@ -1,8 +1,8 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'Opto Dispatch by Opto Studios'
-description 'Dispatch coded by Mauw#5312'
+author 'Opto Studios'
+description 'Opto-Studios Police Dispatch'
 version '1.0.0'
 
 client_scripts {
