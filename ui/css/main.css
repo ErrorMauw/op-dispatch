@@ -21,7 +21,7 @@
     background-color: rgb(0, 0, 0);
     box-shadow: 0 0 4.62vh 0.925vh rgb(0, 0, 0);
     border-radius: 0.5vh;
-    
+
     z-index: 1;
 }
 
@@ -86,7 +86,7 @@
 .dp-controls-right {
     position: absolute;
     right: 0vh;
-    
+
     width: 5vh;
     height: 3vh;
 
@@ -138,7 +138,7 @@
 .dp-alert-cont p {
     position: relative;
     bottom: 0.5vh;
-    
+
     text-align: center;
     font-size: 1.1vh;
     font-family: 'Roboto', sans-serif;

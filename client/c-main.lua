@@ -13,7 +13,9 @@ if Config.Framework == "ESX" then
     ESX = nil
     Citizen.CreateThread(function()
         while ESX == nil do
-            TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+            TriggerEvent('esx:getSharedObject', function(obj)
+                ESX = obj
+            end)
             Citizen.Wait(0)
         end
     end)
@@ -32,7 +34,7 @@ if Config.Framework == "ESX" then
         allcalls = 0
 
         SendNUIMessage({
-            type = 'clear',
+            type = 'clear'
         });
 
         SendNUIMessage({
@@ -85,7 +87,7 @@ if Config.Framework == "ESX" then
                             type = 'setalert',
                             content = calls[numcall - 1]['text'],
                             title = calls[numcall - 1]['title'],
-                            numcall = num,
+                            numcall = num
                         })
                         numcall = numcall - 1
                     end
@@ -104,7 +106,7 @@ if Config.Framework == "ESX" then
                             type = 'setalert',
                             content = calls[numcall + 1]['text'],
                             title = calls[numcall + 1]['title'],
-                            numcall = num,
+                            numcall = num
                         })
                         numcall = numcall + 1
                     end
@@ -121,7 +123,7 @@ if Config.Framework == "ESX" then
                 allcalls = 0
 
                 SendNUIMessage({
-                    type = 'clear',
+                    type = 'clear'
                 });
                 ESX.ShowNotification(LC['Clear_Alerts'])
             end
@@ -192,7 +194,7 @@ if Config.Framework == "QBCore" then
         allcalls = 0
 
         SendNUIMessage({
-            type = 'clear',
+            type = 'clear'
         });
 
         SendNUIMessage({
@@ -225,7 +227,7 @@ if Config.Framework == "QBCore" then
                 allcalls = 0
 
                 SendNUIMessage({
-                    type = 'clear',
+                    type = 'clear'
                 });
             end
         end
@@ -286,7 +288,7 @@ if Config.Framework == "QBCore" then
                                 type = 'setalert',
                                 content = calls[numcall - 1]['text'],
                                 title = calls[numcall - 1]['title'],
-                                numcall = num,
+                                numcall = num
                             })
                             numcall = numcall - 1
                         end
@@ -309,7 +311,7 @@ if Config.Framework == "QBCore" then
                                 type = 'setalert',
                                 content = calls[numcall + 1]['text'],
                                 title = calls[numcall + 1]['title'],
-                                numcall = num,
+                                numcall = num
                             })
                             numcall = numcall + 1
                         end
@@ -329,7 +331,7 @@ if Config.Framework == "QBCore" then
                 allcalls = 0
 
                 SendNUIMessage({
-                    type = 'clear',
+                    type = 'clear'
                 });
                 QBCore.Functions.Notify(LC['Clear_Alerts'])
             end
@@ -405,7 +407,11 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
             id = id
         });
 
-        table.insert(calls, { text = text, coords = coords, title = LC['Alerta_Titulo'] })
+        table.insert(calls, {
+            text = text,
+            coords = coords,
+            title = LC['Alerta_Titulo']
+        })
 
         if Config.Sound then
             PlaySoundFrontend(-1, "CONFIRM_BEEP", "HUD_MINI_GAME_SOUNDSET", 0)
@@ -421,7 +427,11 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
             id = id
         });
 
-        table.insert(calls, { text = text, coords = coords, title = LC['Alerta_Titulo'] })
+        table.insert(calls, {
+            text = text,
+            coords = coords,
+            title = LC['Alerta_Titulo']
+        })
 
         if Config.Sound then
             PlaySoundFrontend(-1, "CONFIRM_BEEP", "HUD_MINI_GAME_SOUNDSET", 0)
@@ -447,9 +457,11 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, color
             id = id
         });
 
-        table.insert(calls,
-            { text = LC['Veh_Rob_01'] .. model .. " color " .. color .. LC['Veh_Rob_02'] .. streetname, coords = coords,
-                title = LC['Alerta_Titulo'] })
+        table.insert(calls, {
+            text = LC['Veh_Rob_01'] .. model .. " color " .. color .. LC['Veh_Rob_02'] .. streetname,
+            coords = coords,
+            title = LC['Alerta_Titulo']
+        })
 
         if Config.Sound then
             PlaySoundFrontend(-1, "CONFIRM_BEEP", "HUD_MINI_GAME_SOUNDSET", 0)
@@ -466,9 +478,11 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, color
             id = id
         });
 
-        table.insert(calls,
-            { text = LC['Veh_Rob_01'] .. model .. " color " .. color .. LC['Veh_Rob_02'] .. streetname, coords = coords,
-                title = LC['Alerta_Titulo'] })
+        table.insert(calls, {
+            text = LC['Veh_Rob_01'] .. model .. " color " .. color .. LC['Veh_Rob_02'] .. streetname,
+            coords = coords,
+            title = LC['Alerta_Titulo']
+        })
 
         if Config.Sound then
             PlaySoundFrontend(-1, "CONFIRM_BEEP", "HUD_MINI_GAME_SOUNDSET", 0)
@@ -492,6 +506,8 @@ TriggerEvent("chat:addSuggestion", "/" .. Config.CommandClear.command, (Config.C
 TriggerEvent("chat:addSuggestion", "/" .. Config.CommandPanic.command, (Config.CommandPanic.description))
 
 for k, v in pairs(Config.Jobs) do
-    TriggerEvent("chat:addSuggestion", "/" .. Config.AllowedJobs[v].command, (Config.AllowedJobs[v].descriptcommand),
-        { { name = (LC['alert']), help = (LC['alert_1']) } })
+    TriggerEvent("chat:addSuggestion", "/" .. Config.AllowedJobs[v].command, (Config.AllowedJobs[v].descriptcommand), {{
+        name = (LC['alert']),
+        help = (LC['alert_1'])
+    }})
 end

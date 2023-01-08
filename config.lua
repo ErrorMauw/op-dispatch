@@ -20,7 +20,7 @@ Config.CommandPanic = {
 
 Config.CommandClear = {
     command = 'cls',
-    description =  'Clear Alerts'
+    description = 'Clear Alerts'
 }
 
 Config.Jobs = {

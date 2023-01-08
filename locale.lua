@@ -194,7 +194,7 @@ Locales['en'].Colors = {
     ['154'] = "Matte Desert Tan",
     ['155'] = "Matte Foilage Green",
     ['156'] = "DEFAULT ALLOY COLOR",
-    ['157'] = "Epsilon Blue",
+    ['157'] = "Epsilon Blue"
 }
 
 Locales['es'].Colors = {
@@ -355,5 +355,5 @@ Locales['es'].Colors = {
     ['154'] = "Matte Desert Tan",
     ['155'] = "Matte Foilage Green",
     ['156'] = "DEFAULT ALLOY COLOR",
-    ['157'] = "Epsilon Blue",
+    ['157'] = "Epsilon Blue"
 }
