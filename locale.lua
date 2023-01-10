@@ -20,19 +20,19 @@ Locales['en'] = {
 }
 
 Locales['es'] = {
-    ['Clear_Alerts'] = 'Se borraron las alertas!',
-    ['Panic_Button'] = 'Boton de panico activado!',
-    ['Not_Service'] = 'No estás de servicio!',
+    ['Clear_Alerts'] = '¡Alertas eliminadas!',
+    ['Panic_Button'] = 'Botón de pánico activado',
+    ['Not_Service'] = '¡No estás de servicio!',
     ['Panic_01'] = 'El oficial de la brigada ',
-    ['Panic_02'] = ' acaba de presionar el boton de panico, todas las unidades disponibles diriganse a la ubicaccion!',
-    ['Correcta_Alerta'] = 'Alerta enviada correctamente!',
-    ['En_Vehiculo'] = 'Debes de estar en un vehiculo!',
+    ['Panic_02'] = ' acaba de presionar el botón de pánico, todas las unidades disponibles diriganse a la ubicaccion!',
+    ['Correcta_Alerta'] = 'Alerta enviada correctamente',
+    ['En_Vehiculo'] = '¡Debes de estar en un vehículo!',
     ['Alerta_Titulo'] = 'Alerta de Central',
-    ['Veh_Rob_01'] = 'Un sujeto ha robado un vehiculo modelo ',
+    ['Veh_Rob_01'] = 'Un sujeto ha robado un vehículo modelo ',
     ['Veh_Rob_02'] = ' en ',
     ['Shooting_Alert'] = 'Se han oído disparos por la zona de ',
     ['rightdisp'] = 'Ir a la derecha Dispatch',
-    ['leftdisp'] = 'Ir a la Izquierda Dispatch',
+    ['leftdisp'] = 'Ir a la izquierda Dispatch',
     ['enterdisp'] = 'Asignar la alerta Dispatch',
     ['alert'] = 'Alerta',
     ['alert_1'] = 'Describe la alerta'
