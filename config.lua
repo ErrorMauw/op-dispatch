@@ -1,16 +1,18 @@
 Config = {}
-Config.Sound = true
+Config.Sound = true -- Enable/Disable dispatch sounds
 Config.Framework = 'QBCore' -- 'ESX' or 'QBCore'
-Config.Locale = 'en'
+Config.Locale = 'en' -- Language
+Config.ShootingAlerts = true -- Enable/Disable Shooting alerts
+Config.ShootingCooldown = 30 -- Seconds
 
 Config.CommandShow = {
     command = 'show',
-    description = 'Open Dispatch',
+    description = 'Open Dispatch'
 }
 
 Config.VehicleRob = {
     command = 'vehrob',
-    description = 'Vehicle theft',
+    description = 'Vehicle theft'
 }
 
 Config.CommandPanic = {
@@ -23,10 +25,7 @@ Config.CommandClear = {
     description = 'Clear Alerts'
 }
 
-Config.Jobs = {
-    'police',
-    'ambulance'
-}
+Config.Jobs = {'police', 'ambulance'}
 
 Config.AllowedJobs = {
     ["police"] = {
@@ -34,13 +33,13 @@ Config.AllowedJobs = {
         label = 'LSPD',
         command = 'alert',
         descriptcommand = 'Send an alert to LSPD',
-        panic = true,
+        panic = true
     },
     ["ambulance"] = {
         name = 'ambulance',
         label = 'EMS',
         command = 'alertems',
         descriptcommand = 'Send an alert to EMS',
-        panic = true,
-    },
+        panic = true
+    }
 }

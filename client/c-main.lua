@@ -491,6 +491,44 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, color
 end)
 
 -----------------------------------
+--------- Shooting Thread ---------
+-----------------------------------
+
+cooldown = false
+CreateThread(function()
+    while true do
+        if Config.ShootingAlerts and IsPedShooting(PlayerPedId()) then
+            for k, v in pairs(Config.Jobs) do
+                local job = v
+                local ped = PlayerPedId()
+                local coords = GetEntityCoords(ped)
+                local substreet = GetStreetNameAtCoord(coords.x, coords.y, coords.z)
+                local streetname = GetStreetNameFromHashKey(substreet)
+                local id = GetPlayerServerId(PlayerId())
+                local text = LC['Shooting_Alert'] .. " " .. streetname
+                if cooldown == false then
+                    TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
+                    TriggerEvent('Cooldown')
+                end
+            end
+        end
+        Wait(1)
+    end
+end)
+
+RegisterNetEvent('Cooldown')
+AddEventHandler('Cooldown', function()
+    cooldown = true
+    timeRemaining = Config.ShootingCooldown
+    local temp = Config.ShootingCooldown
+    for i = 1, temp do
+        Wait(1000)
+        timeRemaining = timeRemaining - 1
+    end
+    cooldown = false
+end)
+
+-----------------------------------
 ---- Suggestion and KeyMapping ----
 -----------------------------------
 
