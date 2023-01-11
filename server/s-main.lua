@@ -1,9 +1,5 @@
 if Config.Framework == 'ESX' then
-    ESX = nil
-
-    TriggerEvent('esx:getSharedObject', function(obj)
-        ESX = obj
-    end)
+    ESX = exports["es_extended"]:getSharedObject()
 
     RegisterServerEvent("Opto_dispatch:Server:SendAlert")
     AddEventHandler("Opto_dispatch:Server:SendAlert", function(aljob, text, coords, id)
