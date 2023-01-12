@@ -131,7 +131,7 @@ if Config.Framework == "ESX" then
                 local coords = GetEntityCoords(PlayerPedId())
                 local id = GetPlayerServerId(PlayerId())
 
-                ESX.ShowNotification('Boton de panico activado!')
+                ESX.ShowNotification(LC['Panic_Button'])
                 TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
             end
         end
@@ -144,7 +144,7 @@ if Config.Framework == "ESX" then
             local coords = GetEntityCoords(PlayerPedId())
             local id = GetPlayerServerId(PlayerId())
 
-            ESX.ShowNotification(LC['Correcta_Alerta'])
+            ESX.ShowNotification(LC['Alert_Sent'])
             TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
         end, false)
     end
@@ -162,10 +162,10 @@ if Config.Framework == "ESX" then
             local subcolor = tostring(GetVehicleColor(vehicle))
             local color = LC.Colors[subcolor]
 
-            ESX.ShowNotification(LC['Correcta_Alerta'])
+            ESX.ShowNotification(LC['Alert_Sent'])
             TriggerServerEvent("Opto_dispatch:Server:SendVehRob", 'police', coords, model, plate, color, id)
         else
-            ESX.ShowNotification(LC['En_Vehiculo'])
+            ESX.ShowNotification(LC['Must_Vehicle'])
         end
     end, false)
 end
@@ -357,7 +357,7 @@ if Config.Framework == "QBCore" then
             local coords = GetEntityCoords(PlayerPedId())
             local id = GetPlayerServerId(PlayerId())
 
-            QBCore.Functions.Notify(LC['Correcta_Alerta'])
+            QBCore.Functions.Notify(LC['Alert_Sent'])
             TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
         end, false)
     end
@@ -375,10 +375,10 @@ if Config.Framework == "QBCore" then
             local subcolor = tostring(GetVehicleColor(vehicle))
             local color = LC.Colors[subcolor]
 
-            QBCore.Functions.Notify(LC['Correcta_Alerta'])
+            QBCore.Functions.Notify(LC['Alert_Sent'])
             TriggerServerEvent("Opto_dispatch:Server:SendVehRob", 'police', coords, model, plate, color, id)
         else
-            QBCore.Functions.Notify(LC['En_Vehiculo'])
+            QBCore.Functions.Notify(LC['Must_Vehicle'])
         end
     end, false)
 end
@@ -395,7 +395,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
     if callnum == totalcalls then
         SendNUIMessage({
             type = 'alert',
-            title = LC['Alerta_Titulo'],
+            title = LC['Alert_Tittle'],
             content = text,
             numcall = numcall,
             allcalls = allcalls,
@@ -405,7 +405,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
         table.insert(calls, {
             text = text,
             coords = coords,
-            title = LC['Alerta_Titulo']
+            title = LC['Alert_Tittle']
         })
 
         if Config.Sound then
@@ -415,7 +415,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
         numcall = allcalls
         SendNUIMessage({
             type = 'alert',
-            title = LC['Alerta_Titulo'],
+            title = LC['Alert_Tittle'],
             content = text,
             numcall = numcall,
             allcalls = allcalls,
@@ -425,7 +425,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
         table.insert(calls, {
             text = text,
             coords = coords,
-            title = LC['Alerta_Titulo']
+            title = LC['Alert_Tittle']
         })
 
         if Config.Sound then
@@ -445,7 +445,7 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, plate
     if callnum == totalcalls then
         SendNUIMessage({
             type = 'alert',
-            title = LC['Alerta_Titulo'],
+            title = LC['Alert_Tittle'],
             content = LC['Veh_Rob_01'] .. model .. " color " .. color .. " - plate: " .. plate .. LC['Veh_Rob_02'] .. streetname,
             numcall = numcall,
             allcalls = allcalls,
@@ -455,7 +455,7 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, plate
         table.insert(calls, {
             text = LC['Veh_Rob_01'] .. model .. " color " .. color .. " - plate: " .. plate .. LC['Veh_Rob_02'] .. streetname,
             coords = coords,
-            title = LC['Alerta_Titulo']
+            title = LC['Alert_Tittle']
         })
 
         if Config.Sound then
@@ -466,7 +466,7 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, plate
 
         SendNUIMessage({
             type = 'alert',
-            title = LC['Alerta_Titulo'],
+            title = LC['Alert_Tittle'],
             content = LC['Veh_Rob_01'] .. model .. " color " .. color .. " - plate: " .. plate .. LC['Veh_Rob_02'] .. streetname,
             numcall = numcall,
             allcalls = allcalls,
@@ -476,7 +476,7 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, plate
         table.insert(calls, {
             text = LC['Veh_Rob_01'] .. model .. " color " .. color .. " - plate: " .. plate .. LC['Veh_Rob_02'] .. streetname,
             coords = coords,
-            title = LC['Alerta_Titulo']
+            title = LC['Alert_Tittle']
         })
 
         if Config.Sound then
