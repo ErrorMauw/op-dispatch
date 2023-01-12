@@ -4,6 +4,7 @@ Config.Framework = 'QBCore' -- 'ESX' or 'QBCore'
 Config.Locale = 'en' -- Language
 Config.ShootingAlerts = true -- Enable/Disable Shooting alerts
 Config.ShootingCooldown = 30 -- Seconds
+Config.BlipDeletion = 30 -- Seconds
 
 Config.CommandShow = {
     command = 'show',

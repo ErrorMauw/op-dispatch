@@ -1,6 +1,7 @@
 local LC = Locales[Config.Locale]
 
 local calls = {}
+local blipscreados = {}
 local numcall = 0
 local allcalls = 0
 local show = false
@@ -491,10 +492,10 @@ end)
 cooldown = false
 CreateThread(function()
     while true do
-        if Config.ShootingAlerts and IsPedShooting(PlayerPedId()) then
+        local ped = PlayerPedId()
+        if Config.ShootingAlerts and IsPedShooting(ped) then
             for k, v in pairs(Config.Jobs) do
                 local job = v
-                local ped = PlayerPedId()
                 local coords = GetEntityCoords(ped)
                 local substreet = GetStreetNameAtCoord(coords.x, coords.y, coords.z)
                 local streetname = GetStreetNameFromHashKey(substreet)
@@ -502,6 +503,7 @@ CreateThread(function()
                 local text = LC['Shooting_Alert'] .. " " .. streetname
                 if cooldown == false then
                     TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, text, coords, id)
+                    ShootingBlip()
                     TriggerEvent('Cooldown')
                 end
             end
@@ -521,6 +523,25 @@ AddEventHandler('Cooldown', function()
     end
     cooldown = false
 end)
+
+function ShootingBlip()
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+    local blip = AddBlipForCoord(coords.x, coords.y, coords.z)
+    SetBlipSprite(blip, 156)
+    SetBlipColour(blip, 4)
+    SetBlipDisplay(blip, 4)
+    SetBlipScale(blip, 1.5)
+    SetBlipFlashes(blip, true)
+
+    BeginTextCommandSetBlipName('STRING')
+    AddTextComponentSubstringPlayerName(LC['Blip_Label'])
+    EndTextCommandSetBlipName(blip)
+
+    Wait(Config.BlipDeletion * 1000)
+    RemoveBlip(blip)
+    print("blip eliminado")
+end
 
 -----------------------------------
 ---- Suggestion and KeyMapping ----
