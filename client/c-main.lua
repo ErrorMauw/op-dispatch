@@ -1,7 +1,6 @@
 local LC = Locales[Config.Locale]
 
 local calls = {}
-local blipscreados = {}
 local numcall = 0
 local allcalls = 0
 local show = false
