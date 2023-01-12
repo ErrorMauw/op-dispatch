@@ -127,7 +127,9 @@ if Config.Framework == "ESX" then
         for k, v in pairs(Config.Jobs) do
             if Config.AllowedJobs[v].panic then
                 local job = v
-                local text = LC['Panic_01'] .. Config.AllowedJobs[v].label .. LC['Panic_02']
+                local name = ESX.PlayerData.firstName
+                local surname = ESX.PlayerData.lastName
+                local text = LC['Panic_01'] .. name .. " " .. surname .. LC['Panic_02']
                 local coords = GetEntityCoords(PlayerPedId())
                 local id = GetPlayerServerId(PlayerId())
 
@@ -337,7 +339,9 @@ if Config.Framework == "QBCore" then
             if Config.AllowedJobs[v].panic then
                 if PlayerData.job.onduty then
                     local job = v
-                    local text = LC['Panic_01'] .. Config.AllowedJobs[v].label .. LC['Panic_02']
+                    local name = PlayerData.charinfo.firstname
+                    local surname = PlayerData.charinfo.lastname
+                    local text = LC['Panic_01'] .. name .. " " .. surname .. LC['Panic_02']
                     local coords = GetEntityCoords(PlayerPedId())
                     local id = GetPlayerServerId(PlayerId())
 
@@ -540,7 +544,6 @@ function ShootingBlip()
 
     Wait(Config.BlipDeletion * 1000)
     RemoveBlip(blip)
-    print("blip eliminado")
 end
 
 -----------------------------------
