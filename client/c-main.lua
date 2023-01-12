@@ -395,7 +395,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
     if callnum == totalcalls then
         SendNUIMessage({
             type = 'alert',
-            title = LC['Alert_Tittle'],
+            title = LC['Alert_Title'],
             content = text,
             numcall = numcall,
             allcalls = allcalls,
@@ -405,7 +405,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
         table.insert(calls, {
             text = text,
             coords = coords,
-            title = LC['Alert_Tittle']
+            title = LC['Alert_Title']
         })
 
         if Config.Sound then
@@ -415,7 +415,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
         numcall = allcalls
         SendNUIMessage({
             type = 'alert',
-            title = LC['Alert_Tittle'],
+            title = LC['Alert_Title'],
             content = text,
             numcall = numcall,
             allcalls = allcalls,
@@ -425,7 +425,7 @@ AddEventHandler("Opto_dispatch:Client:SendAlert", function(text, coords, id)
         table.insert(calls, {
             text = text,
             coords = coords,
-            title = LC['Alert_Tittle']
+            title = LC['Alert_Title']
         })
 
         if Config.Sound then
@@ -445,7 +445,7 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, plate
     if callnum == totalcalls then
         SendNUIMessage({
             type = 'alert',
-            title = LC['Alert_Tittle'],
+            title = LC['Alert_Title'],
             content = LC['Veh_Rob_01'] .. model .. " color " .. color .. " - plate: " .. plate .. LC['Veh_Rob_02'] .. streetname,
             numcall = numcall,
             allcalls = allcalls,
@@ -455,7 +455,7 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, plate
         table.insert(calls, {
             text = LC['Veh_Rob_01'] .. model .. " color " .. color .. " - plate: " .. plate .. LC['Veh_Rob_02'] .. streetname,
             coords = coords,
-            title = LC['Alert_Tittle']
+            title = LC['Alert_Title']
         })
 
         if Config.Sound then
@@ -466,7 +466,7 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, plate
 
         SendNUIMessage({
             type = 'alert',
-            title = LC['Alert_Tittle'],
+            title = LC['Alert_Title'],
             content = LC['Veh_Rob_01'] .. model .. " color " .. color .. " - plate: " .. plate .. LC['Veh_Rob_02'] .. streetname,
             numcall = numcall,
             allcalls = allcalls,
@@ -476,7 +476,7 @@ AddEventHandler("Opto_dispatch:Client:SendVehRob", function(coords, model, plate
         table.insert(calls, {
             text = LC['Veh_Rob_01'] .. model .. " color " .. color .. " - plate: " .. plate .. LC['Veh_Rob_02'] .. streetname,
             coords = coords,
-            title = LC['Alert_Tittle']
+            title = LC['Alert_Title']
         })
 
         if Config.Sound then
