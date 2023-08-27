@@ -1,7 +1,6 @@
 # Opto Studios https://discord.gg/rnQePyNK4x
-Op-Dispatch
-
-ESX & QBCore FiveM dispatch
+Opto Dispatch V2
+Available for ESX & QBCore
 
 ## Download & Installation
 ### Config
@@ -12,13 +11,15 @@ ESX & QBCore FiveM dispatch
 ```lua
 Config = {}
 Config.Sound = true -- Enable/Disable dispatch sounds
-Config.Framework = 'QBCore' -- 'ESX' or 'QBCore'
-Config.Locale = 'en' -- Language
+Config.Framework = 'ESX' -- 'ESX' or 'QBCore'
+Config.Locale = 'en' -- Language 'en' or 'es'
 Config.ShootingAlerts = true -- Enable/Disable Shooting alerts
+Config.Measurement = true -- True = Metric False = Imperial
 Config.ShootingCooldown = 30 -- Seconds
+Config.BlipDeletion = 30 -- Seconds
 
 Config.CommandShow = {
-    command = 'show',
+    command = 'showDispatch',
     description = 'Open Dispatch'
 }
 
@@ -37,7 +38,9 @@ Config.CommandClear = {
     description = 'Clear Alerts'
 }
 
+Config.DispatcherJob = 'police'
 Config.Jobs = {'police', 'ambulance'}
+Config.DefaultDispatchNumber = '0A-00'
 
 Config.AllowedJobs = {
     ["police"] = {
@@ -55,7 +58,20 @@ Config.AllowedJobs = {
         panic = true
     }
 }
+```
+### Adding alerts to your scripts
+```lua
+Example function:
+function ExampleAlert()
+ local job = "police" -- Jobs that will recive the alert
+ local text = "Example Text" -- Main text alert
+ local coords = GetEntityCoords(PlayerPedId()) -- Alert coords
+ local id = GetPlayerServerId(PlayerId()) -- Player that triggered the alert
+ local title = "Example Title" -- Main title alert
+ local panic = false -- Allow/Disable panic effect
 
+ TriggerServerEvent('Opto_dispatch:Server:SendAlert', job, title, text, coords, panic, id)
+end
 ```
 
 ### Manually

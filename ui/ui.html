@@ -14,16 +14,17 @@
 
 <body>
     <div class="container">
-        <div class="dp-right-bar">
-            <p></p>
-        </div>
-        <div class="dp-core">
+        <div class="dp-core draggable">
             <div class="dp-alert-cont">
-                <div class="dp-alert-noalert"><i class="fa-solid fa-eye-slash"></i>
-                    <h5>No Alerts</h5>
+                <h1>No Alerts</h1>
+                <div class="page-cont">0/0</div>
+                <p>Theres no alerts</p>
+                <div class="dp-alert-footer">
+                    <h3>You currently have no alerts</h3>
+                    <h4 style="display: none;">Distance: 2.42 km</h4>
+                    <h5 style="display: none;">Color:</h5>
+                    <div class="dp-alert-color"></div>
                 </div>
-                <h1></h1>
-                <p></p>
             </div>
             <div class="dp-controls">
                 <div class="dp-controls-left"><i id="dp-control-i" class="fa-solid fa-arrow-left"></i></div>
@@ -34,7 +35,46 @@
             </div>
         </div>
     </div>
+
+    <div class="big-container">
+        <div class="big-bg"></div>
+
+        <div class="unit-controller-cont">
+            <div class="unit-controller-status"></div>
+            <div class="unit-comtroller-left-container">
+                <div class="unit-controller-dispatch-name-container">
+                    <input class="unit-number-input" pattern="[A-Za-z0-9]+" maxlength="5" type="text" id="unit-controller-inp" value="9L-12">
+                    <div class="unit-number-button" onclick="Ui.ChangeNumber()"><i class="fa-solid fa-square-arrow-up-right"></i></div>
+                </div>
+                <div class="unit-controller-status-cont">
+                    <div class="status-itm" onclick="Ui.ChangeUnitColor('greenSt')" id="greenSt"></div>
+                    <div class="status-itm" onclick="Ui.ChangeUnitColor('orangeSt')" id="orangeSt"></div>
+                    <div class="status-itm" onclick="Ui.ChangeUnitColor('redSt')" id="redSt"></div>
+                    <div class="status-itm" onclick="Ui.ChangeUnitColor('offlineSt')" id="offlineSt"></div>
+                </div>
+            </div>
+            <div class="unit-comtroller-right-container">
+                <div class="status-icon-cont">
+                    <div id="fa-person" class="icon-itm" onclick="Ui.ChangePatrol('fa-person')"><i
+                            class="fa-solid fa-person"></i></div>
+                    <div id="fa-car" class="icon-itm" onclick="Ui.ChangePatrol('fa-car')"><i class="fa-solid fa-car"></i>
+                    </div>
+                    <div id="fa-helicopter" class="icon-itm" onclick="Ui.ChangePatrol('fa-helicopter')"><i
+                            class="fa-solid fa-helicopter"></i></div>
+                    <div id="fa-sailboat" class="icon-itm" onclick="Ui.ChangePatrol('fa-sailboat')"><i
+                            class="fa-solid fa-sailboat"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="units-side-cont">
+            <h1>Units</h1>
+            <div class="units-container">
+
+            </div>
+        </div>
+    </div>
 </body>
 <script src="./js/app.js"></script>
-
+<script src="./js/draggable.js"></script>
 </html>
