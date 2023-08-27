@@ -84,4 +84,7 @@ cd resources
 git clone https://github.com/ErrorMauw/op-dispatch resources/op-dispatch
 
 ## Preview
-[![Alt text](https://img.youtube.com/vi/uxI09PKPvLk/0.jpg)](https://www.youtube.com/watch?v=uxI09PKPvLk)
+![MiniaturaOptoDispatch](https://github.com/ErrorMauw/op-dispatch/assets/110748601/4957c493-97e6-475e-9360-85495e848454)
+## https://youtu.be/uxI09PKPvLk
+
+
