@@ -1,4 +1,9 @@
 # Opto Studios https://discord.gg/rnQePyNK4x
+
+## Preview
+![MiniaturaOptoDispatch](https://github.com/ErrorMauw/op-dispatch/assets/110748601/4957c493-97e6-475e-9360-85495e848454)
+## https://youtu.be/uxI09PKPvLk
+
 Opto Dispatch V2
 Available for ESX & QBCore
 
@@ -82,9 +87,3 @@ end
 
 cd resources
 git clone https://github.com/ErrorMauw/op-dispatch resources/op-dispatch
-
-## Preview
-![MiniaturaOptoDispatch](https://github.com/ErrorMauw/op-dispatch/assets/110748601/4957c493-97e6-475e-9360-85495e848454)
-## https://youtu.be/uxI09PKPvLk
-
-
