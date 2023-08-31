@@ -26,6 +26,5 @@ files {
     'ui/ui.html',
     'ui/css/main.css',
     'ui/js/app.js',
-    'ui/js/draggable.js',
-    'ui/assets/*.svg'
+    'ui/js/draggable.js'
 }
