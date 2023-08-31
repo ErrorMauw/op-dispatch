@@ -1,4 +1,4 @@
-# Opto Studios https://discord.gg/rnQePyNK4x
+# Opto Studio https://discord.gg/rnQePyNK4x
 
 ## Preview
 ![MiniaturaOptoDispatch](https://github.com/ErrorMauw/op-dispatch/assets/110748601/4957c493-97e6-475e-9360-85495e848454)
